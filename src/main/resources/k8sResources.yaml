@@ -1,0 +1,28 @@
+apiVersion: rbacauthorization.k8s.io/v1
+kind: Role
+metadata:
+  name: [myrolename]
+  namespace: [mynamespace]
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+---
+apiVersion: rbacauthorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: [myrolename]
+  namespace: [mynamespace]
+roleRef:
+  apiGroup: rbacauthorization.k8s.io
+  kind: Role
+  name: [rolename]
+subjects:
+- kind: ServiceAccount
+  name: [SAname]
+  namespace: [mynamespace]
+---
